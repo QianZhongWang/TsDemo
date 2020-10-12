@@ -11,7 +11,7 @@ function axios(config: AxiosRequestConfig): void {
 
 function processConfig(config: AxiosRequestConfig): void {
   config.url = transformURL(config)
-  config.url = transformHeaders(config)
+  config.headers = transformHeaders(config)
   config.data = transformRequestData(config)
 }
 
