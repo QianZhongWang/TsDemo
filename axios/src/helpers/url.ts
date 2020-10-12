@@ -1,4 +1,4 @@
-import {isData, isObject} from "./util";
+import { isData, isPlainObject } from './util'
 
 function encode(val: string): string {
   return encodeURIComponent(val)
@@ -16,7 +16,7 @@ export function buildURL(url: string, params?: any): string {
     return url
   }
   const parts: string[] = []
-  Object.keys(params).forEach((key) => {
+  Object.keys(params).forEach(key => {
     const val = params[key]
 
     if (val === null || typeof val === 'undefined') {
@@ -31,10 +31,10 @@ export function buildURL(url: string, params?: any): string {
       values = [val]
     }
 
-    values.forEach((val) => {
+    values.forEach(val => {
       if (isData(val)) {
         val = val.toISOString()
-      } else if (isObject(val)) {
+      } else if (isPlainObject(val)) {
         val = JSON.stringify(val)
       }
       parts.push(`${encode(key)}=${encode(val)}`)
